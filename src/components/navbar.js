@@ -19,6 +19,6 @@ function NavBar({ loggedIn, handleLogInClick }) {
             </ul>
         </nav>
     );
-}
+};
 
 export default NavBar;
