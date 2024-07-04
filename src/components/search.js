@@ -2,7 +2,10 @@ import React from 'react';
 
 function Search() {
     return (
-        <div>SEARCH BOX</div>
+        <>
+            <div>Search for your favorite music!</div>
+            <div>SEARCH BOX</div>
+        </>
     );
 };
 
