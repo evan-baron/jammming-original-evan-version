@@ -1,15 +1,21 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
-function NavBar({ loggedIn, handleClick }) {
+function NavBar({ loggedIn, handleLogInClick }) {
     return (
         <nav>
             <ul>
-                <li>Home</li>
-                {!loggedIn ? 
-                    <li onClick={handleClick}>Log In</li> 
-                    : 
-                    <li onClick={handleClick}>Log Out</li>
-                }
+                <li>
+                    <NavLink to="/">Home</NavLink>
+                </li>
+                {loggedIn && (
+                    <li>
+                        <NavLink to="/profile">Profile</NavLink>
+                    </li>
+                )}
+                <li onClick={handleLogInClick}>
+                    {loggedIn ? 'Log Out' : 'Log In'}
+                </li>
             </ul>
         </nav>
     );
