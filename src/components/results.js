@@ -7,9 +7,13 @@ function Results() {
     return (
         <>
             <h1>Results</h1>
-            {resultsdata.map((result) => 
-                <Song key={`${result.index+result.name}`} name={result.name} artist={result.artist} />
-            )}
+            <ul>
+                {resultsdata.map((result) => (
+                    <li key={`${result.index+result.name}`}>
+                        <Song name={result.name} artist={result.artist} />
+                    </li>
+                ))}
+            </ul>
         </>
     );
 };
