@@ -7,7 +7,6 @@ function Song({ name, artist }) {
                 <h3>{name}</h3>
                 <h4>{artist}</h4>
             </div>
-            <button className="addBtn">+</button>
         </>
     );
 };
