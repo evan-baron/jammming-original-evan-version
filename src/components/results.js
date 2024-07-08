@@ -3,8 +3,6 @@ import Song from './song';
 import { resultsdata } from '../api/data/data';
 
 function Results({ addSong }) {
-    console.log(resultsdata);
-
     return (
         <>
             <h1>Results</h1>

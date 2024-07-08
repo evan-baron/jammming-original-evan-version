@@ -7,9 +7,10 @@ import { useOutletContext } from 'react-router-dom';
 function HomePage() {   
     const { loggedIn } = useOutletContext();
     const [selectedSongs, setSelectedSongs] = useState([]);
+    const [playlistName, setPlaylistName] = useState('');
+    const [playlists, setPlaylists] = useState([]);
 
     function addSong(result) {
-        console.log(result)
         const isAlreadySelected = selectedSongs.some(song => song.name === result.name && song.artist === result.artist);
         
         if (!isAlreadySelected) {
@@ -22,8 +23,22 @@ function HomePage() {
         setSelectedSongs(updatedSongs);
     }
 
-    console.log(selectedSongs) //this is just for debugging purposes to see what songs got added to selectedSongs
-    
+    function handleChange({ target }) {
+        const { value } = target;
+        setPlaylistName(value);
+    }
+
+    function saveToSpotify() {
+        //since we don't have an API yet, we're just clearing selectedSongs
+        setPlaylists([...playlists, {
+            playlistName: playlistName,
+            playlistSongs: selectedSongs
+        }])
+
+        setSelectedSongs([]);
+        setPlaylistName('');
+    }
+
     return (
         <div>
             {loggedIn ? (
@@ -31,7 +46,13 @@ function HomePage() {
                     <Search />
                     <div>
                         <Results addSong={addSong} />
-                        <Playlist selectedSongs={selectedSongs} removeSong={removeSong}/>
+                        <Playlist 
+                            selectedSongs={selectedSongs} 
+                            removeSong={removeSong} 
+                            handleChange={handleChange} 
+                            saveToSpotify={saveToSpotify}
+                            playlistName={playlistName}
+                        />
                     </div>
                 </div>
             ) : "Please Log In"}
